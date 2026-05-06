@@ -455,67 +455,50 @@
             background: var(--light-gray);
         }
         
-        .premium-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .premium-list {
+            max-width: 900px;
+            margin: 0 auto;
         }
         
-        .premium-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
+        .premium-item {
+            background: #e8e8e8;
+            padding: 1.2rem 2rem;
+            margin-bottom: 0.8rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
         }
         
-        .premium-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--pink));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        
-        .premium-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--gold);
-        }
-        
-        .premium-card:hover::before {
-            transform: scaleX(1);
+        .premium-item:hover {
+            background: #d8d8d8;
         }
         
         .premium-number {
             font-family: 'Noto Serif KR', serif;
-            font-size: 3.5rem;
+            font-size: 1.5rem;
             font-weight: 900;
-            color: var(--gold);
-            opacity: 0.2;
-            line-height: 1;
-            margin-bottom: 1rem;
+            color: white;
+            background: var(--dark-gray);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .premium-content {
+            flex: 1;
         }
         
         .premium-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--navy);
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        
-        .premium-description {
-            color: #666;
-            line-height: 1.7;
-            font-size: 0.95rem;
+            line-height: 1.5;
         }
         
         /* Location Section */
@@ -578,6 +561,91 @@
             height: auto;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Floor Plan Gallery Slider */
+        .floorplan-gallery {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .floorplan-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .floorplan-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .floorplan-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .floorplan-type-label {
+            background: var(--navy);
+            color: white;
+            padding: 1rem 2rem;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+        
+        .slider-nav:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .slider-nav.prev {
+            left: 1rem;
+        }
+        
+        .slider-nav.next {
+            right: 1rem;
+        }
+        
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1.5rem 0;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background: var(--navy);
         }
         
         /* Gallery Section */
@@ -1085,47 +1153,54 @@
                 </p>
             </div>
             
-            <div class="premium-grid">
-                <div class="premium-card fade-in visible">
+            <div class="premium-list">
+                <div class="premium-item fade-in visible">
                     <div class="premium-number">01</div>
-                    <h3 class="premium-title">서울 최대 업무지구 CBD의 중심</h3>
-                    <p class="premium-description">광화문, 시청, 종로를 아우르는 서울 핵심 업무지구의 프리미엄 입지</p>
+                    <div class="premium-content">
+                        <h3 class="premium-title">광화문, 시청, 종로를 아우르는 서울 최대 업무지구 CBD의 중심</h3>
+                    </div>
                 </div>
                 
-                <div class="premium-card fade-in visible">
+                <div class="premium-item fade-in visible">
                     <div class="premium-number">02</div>
-                    <h3 class="premium-title">시청역·충정로역·서대문역 Triple 역세권</h3>
-                    <p class="premium-description">1·2·5호선 환승 가능. 서울 어디든 30분대 이동 가능한 최고의 접근성</p>
+                    <div class="premium-content">
+                        <h3 class="premium-title">모든 교통축의 환기점인 시청역·지하문역·서울역 멀티역세권</h3>
+                    </div>
                 </div>
                 
-                <div class="premium-card fade-in visible">
+                <div class="premium-item fade-in visible">
                     <div class="premium-number">03</div>
-                    <h3 class="premium-title">서울의 심장에서 누리는 문화특권</h3>
-                    <p class="premium-description">덕수궁, 서울광장, 세종문화회관. 도심 속 품격있는 문화생활의 중심</p>
+                    <div class="premium-content">
+                        <h3 class="premium-title">덕수궁, 서울광장, 세종문화회관 서울의 심장에서 누리는 문화특권</h3>
+                    </div>
                 </div>
                 
-                <div class="premium-card fade-in visible">
+                <div class="premium-item fade-in visible">
                     <div class="premium-number">04</div>
-                    <h3 class="premium-title">완벽한 쇼핑과 생활 인프라</h3>
-                    <p class="premium-description">롯데백화점부터 명동, 남대문시장까지. 모든 쇼핑과 생활편의시설이 도보권</p>
+                    <div class="premium-content">
+                        <h3 class="premium-title">롯데백화점에서 명동, 남대문시장까지 완벽한 쇼핑과 생활 인프라</h3>
+                    </div>
                 </div>
                 
-                <div class="premium-card fade-in visible">
+                <div class="premium-item fade-in visible">
                     <div class="premium-number">05</div>
-                    <h3 class="premium-title">대한민국 최고의 명문학군</h3>
-                    <p class="premium-description">덕수초, 리라초, 청덕여중, 이화외고. 최상위권 교육환경 완성</p>
+                    <div class="premium-content">
+                        <h3 class="premium-title">덕수초, 리라초, 청덕여중, 이화외고 대한민국 최고의 명문학군</h3>
+                    </div>
                 </div>
                 
-                <div class="premium-card fade-in visible">
+                <div class="premium-item fade-in visible">
                     <div class="premium-number">06</div>
-                    <h3 class="premium-title">논현신 미래가치의 랜드마크</h3>
-                    <p class="premium-description">서울역 북부역세권 개발 착공, 효암아트홀 재건축. 미래가치 상승의 중심지</p>
+                    <div class="premium-content">
+                        <h3 class="premium-title">서울역 북부역세권 개발, 호암아트홀 재건축 눈부신 미래가치의 맨 앞자리</h3>
+                    </div>
                 </div>
                 
-                <div class="premium-card fade-in visible">
+                <div class="premium-item fade-in visible">
                     <div class="premium-number">07</div>
-                    <h3 class="premium-title">롯데캐슬의 하이엔드 주거명작</h3>
-                    <p class="premium-description">단 136세대 하이클래스에게 헌정하는 롯데캐슬만의 프리미엄 주거 솔루션</p>
+                    <div class="premium-content">
+                        <h3 class="premium-title">단 136부의 하이클래스에게 헌정하는 롯데캐슬의 하이엔드 주거명작</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1700,6 +1775,38 @@
         
         document.querySelectorAll('.fade-in').forEach((el) => {
             observer.observe(el);
+        });
+        
+        // ============================================
+        // Floor Plan Gallery Slider
+        // ============================================
+        let currentFloorplanIndex = 1;
+        
+        function showFloorplanSlide(n) {
+            const slides = document.querySelectorAll('.floorplan-slide');
+            const dots = document.querySelectorAll('.slider-dots .dot');
+            
+            if (n > slides.length) { currentFloorplanIndex = 1; }
+            if (n < 1) { currentFloorplanIndex = slides.length; }
+            
+            slides.forEach(slide => slide.style.display = 'none');
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentFloorplanIndex - 1].style.display = 'block';
+            dots[currentFloorplanIndex - 1].classList.add('active');
+        }
+        
+        function moveSlide(n) {
+            showFloorplanSlide(currentFloorplanIndex += n);
+        }
+        
+        function currentSlide(n) {
+            showFloorplanSlide(currentFloorplanIndex = n);
+        }
+        
+        // Initialize floor plan slider on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showFloorplanSlide(currentFloorplanIndex);
         });
     </script>
 
